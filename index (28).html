@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bout Sheet — Fantasy UFC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A2129;
+    --paper:#DEDDD3;
+    --rule:#A9A79A;
+    --faint:#C8C7BC;
+    --red:#A82C31;
+    --blue:#1D4E77;
+    --sheet:#E9E8E0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding:clamp(16px,4vw,56px);
+  }
+  .sheet{
+    max-width:1080px;margin:0 auto;background:var(--sheet);
+    border:1.5px solid var(--ink);
+    box-shadow:6px 6px 0 rgba(26,33,41,.14);
+  }
+
+  /* ---- masthead ---- */
+  .masthead{
+    display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px;
+    justify-content:space-between;
+    padding:22px clamp(16px,3vw,32px) 16px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .eyebrow{
+    font-family:"Barlow Condensed",sans-serif;
+    text-transform:uppercase;letter-spacing:.22em;
+    font-size:12px;color:var(--blue);margin:0 0 2px;
+  }
+  .title{
+    font-family:"Barlow Condensed",sans-serif;
+    font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+    font-size:clamp(30px,6vw,46px);line-height:.95;margin:0;
+  }
+  .meta{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;
+    text-align:right;color:#4A5560;line-height:1.7;
+  }
+  .meta b{color:var(--ink);font-weight:500}
+
+  /* ---- the card ---- */
+  .scroller{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:720px}
+  caption{
+    font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+    letter-spacing:.2em;font-size:11px;color:#5C6670;
+    text-align:left;padding:14px clamp(16px,3vw,32px) 8px;
+  }
+  th,td{border:1px solid var(--rule);padding:9px 10px}
+  thead th{
+    font-family:"Barlow Condensed",sans-serif;font-weight:500;
+    text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;
+    color:#4A5560;vertical-align:bottom;text-align:center;line-height:1.25;
+    background:rgba(169,167,154,.16);
+  }
+  thead th .date{
+    display:block;font-family:"IBM Plex Mono",monospace;
+    font-size:10px;letter-spacing:0;color:#6B7480;margin-top:3px;
+  }
+  th[scope=row]{
+    text-align:left;font-family:"Barlow Condensed",sans-serif;
+    font-weight:600;text-transform:uppercase;letter-spacing:.08em;
+    font-size:17px;white-space:nowrap;
+    position:sticky;left:0;background:var(--sheet);
+    border-right:1.5px solid var(--ink);
+  }
+  .seed{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;
+    color:#8A9099;margin-right:9px;font-weight:400;
+  }
+  td.pts{
+    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+    text-align:center;font-size:15px;
+  }
+  td.neg{color:var(--red)}
+  td.zero{color:var(--faint)}
+  td.total{
+    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+    text-align:center;font-size:19px;font-weight:600;
+    border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);
+    background:rgba(29,78,119,.07);
+  }
+  thead th.totalhead{
+    border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);
+  }
+  tbody tr.lead th[scope=row]{color:var(--red)}
+  tbody tr.lead td.total{background:rgba(168,44,49,.11);color:var(--red)}
+  tbody tr:hover td{background:rgba(169,167,154,.13)}
+  tbody tr.lead:hover td.total{background:rgba(168,44,49,.15)}
+
+  /* ---- notes ---- */
+  .notes{
+    border-top:1.5px solid var(--ink);
+    padding:18px clamp(16px,3vw,32px) 24px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px 32px;
+  }
+  .notes h2{
+    font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+    letter-spacing:.2em;font-size:11px;color:var(--blue);
+    margin:0 0 6px;font-weight:600;
+  }
+  .notes p{margin:0 0 8px;font-size:13.5px;color:#39434D}
+  .notes p:last-child{margin-bottom:0}
+  .notes .fig{
+    font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);
+  }
+  .strike{text-decoration:line-through;color:#8A9099}
+  footer{
+    padding:12px clamp(16px,3vw,32px);border-top:1px solid var(--rule);
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:#6B7480;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  tbody tr{opacity:0;animation:ink .5s ease forwards}
+  @keyframes ink{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    tbody tr{opacity:1;animation:none}
+  }
+  @media (max-width:620px){
+    body{padding:0}
+    .sheet{border-left:none;border-right:none;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <div class="masthead">
+    <div>
+      <p class="eyebrow">Official scoring — verified</p>
+      <h1 class="title">Bout Sheet</h1>
+    </div>
+    <div class="meta">
+      <b>2025 season</b> · 6 events<br>
+      8 Mar – 12 Apr 2025<br>
+      7 teams · 16 fighters each
+    </div>
+  </div>
+
+  <div class="scroller">
+  <table>
+    <caption>Points by event — cumulative</caption>
+    <thead>
+      <tr>
+        <th scope="col">Team</th>
+        <th scope="col">UFC 313<span class="date">03·08</span></th>
+        <th scope="col">Vettori–Dolidze<span class="date">03·15</span></th>
+        <th scope="col">Edwards–Brady<span class="date">03·22</span></th>
+        <th scope="col">Moreno–Erceg<span class="date">03·29</span></th>
+        <th scope="col">Emmett–Murphy<span class="date">04·05</span></th>
+        <th scope="col">UFC 314<span class="date">04·12</span></th>
+        <th scope="col" class="totalhead">Total</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+
+  <div class="notes">
+    <div>
+      <h2>Corrections applied</h2>
+      <p><span class="fig">Bill <span class="strike">34</span> → 29.</span> Yair Rodríguez was credited +5 for beating a higher-ranked opponent while his opponent was unranked. Blank rank cells read as rank 0, which sits above the champion.</p>
+      <p><span class="fig">Jon 12.</span> Jalin Turner's −10 at UFC 313 was previously typed in by hand after he was dropped. It is now derived from roster dates.</p>
+    </div>
+    <div>
+      <h2>Reading the card</h2>
+      <p>A dash means no rostered fighter competed. Most teams score on two or three cards out of six — fighters compete about twice a year, so an empty cell is the normal state, not a missing entry.</p>
+      <p>Points follow the fighter to whoever held them on fight night, not to whoever holds them now.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>141 of 144 fighter-scores reproduced from the source spreadsheet</span>
+    <span>Placeholder — live scoring not yet connected</span>
+  </footer>
+</main>
+
+<script>
+const standings = [
+  {name:"Michael", per_event:[0,0,22,0,0,59],     total:81},
+  {name:"Bobby",   per_event:[-5,0,0,0,20,30],    total:45},
+  {name:"Owen",    per_event:[23,0,0,0,0,22],     total:45},
+  {name:"Alex",    per_event:[43,0,-10,19,0,-10], total:42},
+  {name:"Bill",    per_event:[0,16,0,0,0,13],     total:29},
+  {name:"Brendan", per_event:[0,-4,31,-4,0,0],    total:23},
+  {name:"Jon",     per_event:[-5,-10,-4,12,0,19], total:12}
+];
+
+const tbody = document.getElementById("rows");
+standings.forEach((team, i) => {
+  const tr = document.createElement("tr");
+  tr.style.animationDelay = (i * 55) + "ms";
+  if (i === 0) tr.className = "lead";
+
+  const th = document.createElement("th");
+  th.scope = "row";
+  th.innerHTML = '<span class="seed">' + String(i + 1).padStart(2, "0") + '</span>' + team.name;
+  tr.appendChild(th);
+
+  team.per_event.forEach(pts => {
+    const td = document.createElement("td");
+    td.className = "pts" + (pts < 0 ? " neg" : pts === 0 ? " zero" : "");
+    td.textContent = pts === 0 ? "–" : (pts > 0 ? "+" + pts : pts);
+    tr.appendChild(td);
+  });
+
+  const total = document.createElement("td");
+  total.className = "total";
+  total.textContent = team.total;
+  tr.appendChild(total);
+
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>

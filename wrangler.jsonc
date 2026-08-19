@@ -1,0 +1,7 @@
+{
+  "name": "ufc-fantasy",
+  "compatibility_date": "2026-08-19",
+  "assets": {
+    "directory": "./public/"
+  }
+}
