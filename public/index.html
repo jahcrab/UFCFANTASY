@@ -3,232 +3,259 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bout Sheet — Fantasy UFC</title>
+<title>Fantasy UFC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#1A2129;
-    --paper:#DEDDD3;
-    --rule:#A9A79A;
-    --faint:#C8C7BC;
-    --red:#A82C31;
-    --blue:#1D4E77;
-    --sheet:#E9E8E0;
+    --ink:#1A2129; --paper:#DEDDD3; --sheet:#E9E8E0;
+    --rule:#A9A79A; --red:#A82C31; --blue:#1D4E77;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
   body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:"IBM Plex Sans",system-ui,sans-serif;
-    font-size:15px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-    padding:clamp(16px,4vw,56px);
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding:clamp(0px,3vw,44px);
   }
-  .sheet{
-    max-width:1080px;margin:0 auto;background:var(--sheet);
-    border:1.5px solid var(--ink);
-    box-shadow:6px 6px 0 rgba(26,33,41,.14);
-  }
+  .sheet{max-width:920px;margin:0 auto;background:var(--sheet);
+    border:1.5px solid var(--ink);box-shadow:6px 6px 0 rgba(26,33,41,.14)}
+  @media(max-width:620px){.sheet{border-left:none;border-right:none;box-shadow:none}}
 
-  /* ---- masthead ---- */
-  .masthead{
-    display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px;
-    justify-content:space-between;
-    padding:22px clamp(16px,3vw,32px) 16px;
-    border-bottom:1.5px solid var(--ink);
-  }
-  .eyebrow{
-    font-family:"Barlow Condensed",sans-serif;
-    text-transform:uppercase;letter-spacing:.22em;
-    font-size:12px;color:var(--blue);margin:0 0 2px;
-  }
-  .title{
-    font-family:"Barlow Condensed",sans-serif;
-    font-weight:600;text-transform:uppercase;letter-spacing:.03em;
-    font-size:clamp(30px,6vw,46px);line-height:.95;margin:0;
-  }
-  .meta{
-    font-family:"IBM Plex Mono",monospace;font-size:12px;
-    text-align:right;color:#4A5560;line-height:1.7;
-  }
-  .meta b{color:var(--ink);font-weight:500}
+  .masthead{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
+    align-items:flex-end;padding:22px clamp(16px,3vw,30px) 16px;
+    border-bottom:1.5px solid var(--ink)}
+  .eyebrow{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+    letter-spacing:.22em;font-size:11px;color:var(--blue);margin:0 0 3px}
+  h1{font-family:"Barlow Condensed",sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:.03em;font-size:clamp(28px,5.5vw,42px);line-height:.95;margin:0}
+  .who{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#5C6670;text-align:right}
+  .who b{display:block;color:var(--ink);font-weight:500}
+  .badge{display:inline-block;font-family:"Barlow Condensed",sans-serif;
+    text-transform:uppercase;letter-spacing:.14em;font-size:10px;
+    border:1px solid var(--blue);color:var(--blue);padding:1px 6px;margin-top:4px}
 
-  /* ---- the card ---- */
-  .scroller{overflow-x:auto}
-  table{border-collapse:collapse;width:100%;min-width:720px}
-  caption{
-    font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
-    letter-spacing:.2em;font-size:11px;color:#5C6670;
-    text-align:left;padding:14px clamp(16px,3vw,32px) 8px;
-  }
-  th,td{border:1px solid var(--rule);padding:9px 10px}
-  thead th{
-    font-family:"Barlow Condensed",sans-serif;font-weight:500;
-    text-transform:uppercase;letter-spacing:.1em;font-size:11.5px;
-    color:#4A5560;vertical-align:bottom;text-align:center;line-height:1.25;
-    background:rgba(169,167,154,.16);
-  }
-  thead th .date{
-    display:block;font-family:"IBM Plex Mono",monospace;
-    font-size:10px;letter-spacing:0;color:#6B7480;margin-top:3px;
-  }
-  th[scope=row]{
-    text-align:left;font-family:"Barlow Condensed",sans-serif;
-    font-weight:600;text-transform:uppercase;letter-spacing:.08em;
-    font-size:17px;white-space:nowrap;
-    position:sticky;left:0;background:var(--sheet);
-    border-right:1.5px solid var(--ink);
-  }
-  .seed{
-    font-family:"IBM Plex Mono",monospace;font-size:11px;
-    color:#8A9099;margin-right:9px;font-weight:400;
-  }
-  td.pts{
-    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-    text-align:center;font-size:15px;
-  }
-  td.neg{color:var(--red)}
-  td.zero{color:var(--faint)}
-  td.total{
-    font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
-    text-align:center;font-size:19px;font-weight:600;
-    border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);
-    background:rgba(29,78,119,.07);
-  }
-  thead th.totalhead{
-    border-left:1.5px solid var(--ink);border-right:1.5px solid var(--ink);
-  }
-  tbody tr.lead th[scope=row]{color:var(--red)}
-  tbody tr.lead td.total{background:rgba(168,44,49,.11);color:var(--red)}
-  tbody tr:hover td{background:rgba(169,167,154,.13)}
-  tbody tr.lead:hover td.total{background:rgba(168,44,49,.15)}
+  section{padding:20px clamp(16px,3vw,30px);border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+  h2{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+    letter-spacing:.2em;font-size:11px;color:var(--blue);margin:0 0 14px;font-weight:600}
 
-  /* ---- notes ---- */
-  .notes{
-    border-top:1.5px solid var(--ink);
-    padding:18px clamp(16px,3vw,32px) 24px;
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px 32px;
-  }
-  .notes h2{
-    font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
-    letter-spacing:.2em;font-size:11px;color:var(--blue);
-    margin:0 0 6px;font-weight:600;
-  }
-  .notes p{margin:0 0 8px;font-size:13.5px;color:#39434D}
-  .notes p:last-child{margin-bottom:0}
-  .notes .fig{
-    font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);
-  }
-  .strike{text-decoration:line-through;color:#8A9099}
-  footer{
-    padding:12px clamp(16px,3vw,32px);border-top:1px solid var(--rule);
-    font-family:"IBM Plex Mono",monospace;font-size:11px;color:#6B7480;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  }
+  .teams{list-style:none;margin:0 0 16px;padding:0;border-top:1px solid var(--rule)}
+  .teams li{display:flex;align-items:center;gap:12px;padding:9px 0;
+    border-bottom:1px solid var(--rule)}
+  .num{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8A9099;min-width:20px}
+  .tname{font-family:"Barlow Condensed",sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:.07em;font-size:18px}
+  .temail{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#6B7480;
+    margin-left:auto;overflow:hidden;text-overflow:ellipsis}
+  .unclaimed{color:var(--red)}
 
-  tbody tr{opacity:0;animation:ink .5s ease forwards}
-  @keyframes ink{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){
-    tbody tr{opacity:1;animation:none}
-  }
-  @media (max-width:620px){
-    body{padding:0}
-    .sheet{border-left:none;border-right:none;box-shadow:none}
-  }
+  form{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  input,select{font-family:"IBM Plex Sans",sans-serif;font-size:14px;
+    padding:8px 10px;border:1px solid var(--rule);background:#F3F2EC;color:var(--ink)}
+  input:focus,select:focus,button:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+  input[type=datetime-local]{font-family:"IBM Plex Mono",monospace;font-size:13px}
+  button{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;
+    letter-spacing:.12em;font-size:13px;font-weight:600;padding:9px 16px;
+    border:1.5px solid var(--ink);background:var(--ink);color:var(--sheet);cursor:pointer}
+  button:hover{background:var(--blue);border-color:var(--blue)}
+  button.ghost{background:transparent;color:var(--ink)}
+  button.ghost:hover{background:var(--ink);color:var(--sheet)}
+  button.link{border:none;background:none;color:var(--red);padding:2px 4px;
+    letter-spacing:.1em;font-size:11px}
+  button.link:hover{background:none;text-decoration:underline}
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;
+    font-family:"IBM Plex Mono",monospace;font-size:13px;margin:0 0 16px}
+  .kv dt{color:#6B7480}
+  .kv dd{margin:0}
+  .order{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+  .order li{font-family:"IBM Plex Mono",monospace;font-size:12px;
+    border:1px solid var(--rule);padding:3px 8px;background:#F3F2EC}
+  .order li span{color:#8A9099;margin-right:5px}
+
+  .note{font-size:13px;color:#4A5560;margin:0}
+  .alert{border-left:3px solid var(--red);background:rgba(168,44,49,.07);
+    padding:10px 14px;margin:0 0 16px;font-size:13.5px}
+  .empty{color:#6B7480;font-size:13.5px;font-style:italic;margin:0 0 14px}
 </style>
 </head>
 <body>
 <main class="sheet">
-
   <div class="masthead">
     <div>
-      <p class="eyebrow">Official scoring — verified</p>
-      <h1 class="title">Bout Sheet</h1>
+      <p class="eyebrow" id="season">Loading</p>
+      <h1 id="leagueName">—</h1>
     </div>
-    <div class="meta">
-      <b>2025 season</b> · 6 events<br>
-      8 Mar – 12 Apr 2025<br>
-      7 teams · 16 fighters each
-    </div>
+    <div class="who" id="who"></div>
   </div>
-
-  <div class="scroller">
-  <table>
-    <caption>Points by event — cumulative</caption>
-    <thead>
-      <tr>
-        <th scope="col">Team</th>
-        <th scope="col">UFC 313<span class="date">03·08</span></th>
-        <th scope="col">Vettori–Dolidze<span class="date">03·15</span></th>
-        <th scope="col">Edwards–Brady<span class="date">03·22</span></th>
-        <th scope="col">Moreno–Erceg<span class="date">03·29</span></th>
-        <th scope="col">Emmett–Murphy<span class="date">04·05</span></th>
-        <th scope="col">UFC 314<span class="date">04·12</span></th>
-        <th scope="col" class="totalhead">Total</th>
-      </tr>
-    </thead>
-    <tbody id="rows"></tbody>
-  </table>
-  </div>
-
-  <div class="notes">
-    <div>
-      <h2>Corrections applied</h2>
-      <p><span class="fig">Bill <span class="strike">34</span> → 29.</span> Yair Rodríguez was credited +5 for beating a higher-ranked opponent while his opponent was unranked. Blank rank cells read as rank 0, which sits above the champion.</p>
-      <p><span class="fig">Jon 12.</span> Jalin Turner's −10 at UFC 313 was previously typed in by hand after he was dropped. It is now derived from roster dates.</p>
-    </div>
-    <div>
-      <h2>Reading the card</h2>
-      <p>A dash means no rostered fighter competed. Most teams score on two or three cards out of six — fighters compete about twice a year, so an empty cell is the normal state, not a missing entry.</p>
-      <p>Points follow the fighter to whoever held them on fight night, not to whoever holds them now.</p>
-    </div>
-  </div>
-
-  <footer>
-    <span>141 of 144 fighter-scores reproduced from the source spreadsheet</span>
-    <span>Placeholder — live scoring not yet connected</span>
-  </footer>
+  <div id="app"></div>
+  <section style="border-top:1.5px solid var(--ink)">
+    <h2>Draft board</h2>
+    <p class="note" style="margin-bottom:10px">Projected 2027 points for every fighter, ranked by value over replacement.</p>
+    <a href="board.html"><button type="button">Open draft board</button></a>
+    <a href="draft.html"><button type="button" class="ghost">Draft room</button></a>
+  </section>
 </main>
 
 <script>
-const standings = [
-  {name:"Michael", per_event:[0,0,22,0,0,59],     total:81},
-  {name:"Bobby",   per_event:[-5,0,0,0,20,30],    total:45},
-  {name:"Owen",    per_event:[23,0,0,0,0,22],     total:45},
-  {name:"Alex",    per_event:[43,0,-10,19,0,-10], total:42},
-  {name:"Bill",    per_event:[0,16,0,0,0,13],     total:29},
-  {name:"Brendan", per_event:[0,-4,31,-4,0,0],    total:23},
-  {name:"Jon",     per_event:[-5,-10,-4,12,0,19], total:12}
-];
+const $ = (s) => document.querySelector(s);
+let state = null;
 
-const tbody = document.getElementById("rows");
-standings.forEach((team, i) => {
-  const tr = document.createElement("tr");
-  tr.style.animationDelay = (i * 55) + "ms";
-  if (i === 0) tr.className = "lead";
-
-  const th = document.createElement("th");
-  th.scope = "row";
-  th.innerHTML = '<span class="seed">' + String(i + 1).padStart(2, "0") + '</span>' + team.name;
-  tr.appendChild(th);
-
-  team.per_event.forEach(pts => {
-    const td = document.createElement("td");
-    td.className = "pts" + (pts < 0 ? " neg" : pts === 0 ? " zero" : "");
-    td.textContent = pts === 0 ? "–" : (pts > 0 ? "+" + pts : pts);
-    tr.appendChild(td);
+async function api(method, path, body) {
+  const res = await fetch(path, {
+    method,
+    headers: body ? { "content-type": "application/json" } : {},
+    body: body ? JSON.stringify(body) : undefined,
   });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || "Request failed");
+  return data;
+}
 
-  const total = document.createElement("td");
-  total.className = "total";
-  total.textContent = team.total;
-  tr.appendChild(total);
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+}
 
-  tbody.appendChild(tr);
+function fmtDate(s) {
+  if (!s) return "not set";
+  const d = new Date(s);
+  if (isNaN(d)) return s;
+  return d.toLocaleString(undefined,
+    { weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit" });
+}
+
+async function load() {
+  state = await api("GET", "/api/state");
+  render();
+}
+
+function render() {
+  const { league, teams, draft, me } = state;
+  $("#season").textContent =
+    `${league.season_year} season · ${league.divisions.length} divisions · ${league.roster_size} fighters per team`;
+  $("#leagueName").textContent = league.name;
+  $("#who").innerHTML = me
+    ? `<b>${esc(me.display_name || me.email)}</b>${esc(me.email)}` +
+      (me.is_commissioner ? '<span class="badge">Commissioner</span>' : "")
+    : "<b>Not signed in</b>read only";
+
+  const boss = !!me?.is_commissioner;
+  const drafting = draft && draft.status !== "scheduled";
+  let html = "";
+
+  if (!me) {
+    html += `<section><div class="alert">You are viewing this league signed out, so nothing can be changed. If Cloudflare Access were switched on, you would have been asked for a sign-in code before reaching this page.</div></section>`;
+  } else if (me.pending) {
+    html += `<section><div class="alert">Signed in as ${esc(me.email)}, but you are not in this league yet. Ask the commissioner to add a team with your email address.</div></section>`;
+  }
+
+  html += `<section><h2>Teams — ${teams.length}</h2>`;
+  if (!teams.length) {
+    html += `<p class="empty">No teams yet. ${boss ? "Add the first one below." : "The commissioner hasn't added any."}</p>`;
+  } else {
+    html += `<ul class="teams">` + teams.map((t, i) => `
+      <li>
+        <span class="num">${String(i + 1).padStart(2, "0")}</span>
+        <span class="tname">${esc(t.name)}</span>
+        <span class="temail ${t.manager_id ? "" : "unclaimed"}">${
+          t.manager_id ? esc(t.manager_name) : "no manager"}</span>
+        ${boss && !drafting ? `<button class="link" data-remove="${t.id}">Remove</button>` : ""}
+      </li>`).join("") + `</ul>`;
+  }
+  if (boss && !drafting) {
+    html += `
+      <form id="addTeam">
+        <input name="name" placeholder="Team name" maxlength="40" required>
+        <input name="manager_email" type="email" placeholder="Manager email (optional)">
+        <button type="submit">Add team</button>
+      </form>
+      <p class="note" style="margin-top:8px">The email is how that person signs in. It has to match the address you allow in Cloudflare Access.</p>`;
+  }
+  html += `</section>`;
+
+  html += `<section><h2>Draft</h2>`;
+  if (draft) {
+    const names = {};
+    teams.forEach((t) => (names[t.id] = t.name));
+    const order = JSON.parse(draft.team_order || "[]");
+    html += `<dl class="kv">
+      <dt>Status</dt><dd>${esc(draft.status)}</dd>
+      <dt>Starts</dt><dd>${esc(fmtDate(draft.scheduled_at))}</dd>
+      <dt>Rounds</dt><dd>${draft.rounds} · snake</dd>
+      <dt>Per pick</dt><dd>${draft.pick_seconds}s</dd>
+    </dl>`;
+    if (order.length) {
+      html += `<h2 style="margin-top:4px">Round 1 order</h2><ul class="order">` +
+        order.map((id, i) => `<li><span>${i + 1}</span>${esc(names[id] || "?")}</li>`).join("") +
+        `</ul>`;
+    }
+  } else {
+    html += `<p class="empty">No draft scheduled.</p>`;
+  }
+  if (boss && !drafting) {
+    html += `
+      <form id="schedDraft" style="margin-top:14px">
+        <input name="scheduled_at" type="datetime-local">
+        <select name="pick_seconds">
+          <option value="60">60s per pick</option>
+          <option value="90" selected>90s per pick</option>
+          <option value="120">2m per pick</option>
+          <option value="300">5m per pick</option>
+        </select>
+        <button type="submit" class="ghost">${draft ? "Reschedule" : "Schedule draft"}</button>
+      </form>
+      <p class="note" style="margin-top:8px">Order is randomised each time you schedule.</p>`;
+  }
+  html += `</section>`;
+
+  $("#app").innerHTML = html;
+  wire();
+}
+
+function wire() {
+  const addTeam = $("#addTeam");
+  if (addTeam) addTeam.onsubmit = async (e) => {
+    e.preventDefault();
+    const f = new FormData(addTeam);
+    await guard(() => api("POST", "/api/teams", {
+      name: f.get("name"),
+      manager_email: f.get("manager_email") || undefined,
+    }));
+  };
+
+  const sched = $("#schedDraft");
+  if (sched) sched.onsubmit = async (e) => {
+    e.preventDefault();
+    const f = new FormData(sched);
+    const when = f.get("scheduled_at");
+    await guard(() => api("POST", "/api/draft", {
+      scheduled_at: when ? new Date(when).toISOString() : null,
+      pick_seconds: Number(f.get("pick_seconds")),
+    }));
+  };
+
+  document.querySelectorAll("[data-remove]").forEach((b) => {
+    b.onclick = () => guard(() => api("DELETE", "/api/teams?id=" + b.dataset.remove));
+  });
+}
+
+async function guard(fn) {
+  try {
+    await fn();
+    await load();
+  } catch (err) {
+    const box = document.createElement("div");
+    box.className = "alert";
+    box.textContent = err.message;
+    $("#app").prepend(box);
+  }
+}
+
+load().catch((err) => {
+  $("#app").innerHTML =
+    `<section><div class="alert">${esc(err.message)}<br><br>If this mentions the database, the D1 binding or the schema may not be set up yet.</div></section>`;
 });
 </script>
 </body>
