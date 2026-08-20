@@ -1,5 +1,5 @@
 {
-  "name": "ufc-fantasy",
+  "name": "ufcfantasy",
   "main": "src/index.js",
   "compatibility_date": "2026-08-19",
   "assets": {
@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "ufc-fantasy",
-      "database_id": "aa48beb8-ad9d-4c6c-aa2b-3af1f61a97bb"
+      "database_id": "YOUR_ACTUAL_UUID_HERE"
     }
   ]
 }
